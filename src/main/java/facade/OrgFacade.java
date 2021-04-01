@@ -180,7 +180,7 @@ public class OrgFacade {
     }
     
      public Employee deleteEmployee(Long empid) {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
             Employee emp = em.find(Employee.class, empid);

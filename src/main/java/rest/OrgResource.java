@@ -128,8 +128,8 @@ public class OrgResource {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("deleteEmp/{empid}")
-    public EmployeeDTO deleteEmp(@PathParam("empid") Long empid) {
+    public Response deleteEmp(@PathParam("empid") Long empid) {
         Employee deleteEmployee = EMPFACADE.deleteEmployee(empid);
-        return new EmployeeDTO(deleteEmployee);
+        return Response.ok(gson.toJson(deleteEmployee)).build();
     }
 }
