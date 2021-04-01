@@ -178,5 +178,18 @@ public class OrgFacade {
         return "Employee added to project";
 
     }
+    
+     public Employee deleteEmployee(Long empid) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Employee emp = em.find(Employee.class, empid);
+            em.remove(em.merge(emp));
+            em.getTransaction().commit();
+            return emp;
+        } finally {
+            em.close();
+        }
+    }
 
 }

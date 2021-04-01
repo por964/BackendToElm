@@ -25,6 +25,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -122,5 +123,13 @@ public class OrgResource {
         String result = EMPFACADE.addEmplToProject(empid, projid);
         return gson.toJson(result);
 
+    }
+    
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("deleteEmp/{empid}")
+    public EmployeeDTO deleteEmp(@PathParam("empid") Long empid) {
+        Employee deleteEmployee = EMPFACADE.deleteEmployee(empid);
+        return new EmployeeDTO(deleteEmployee);
     }
 }
