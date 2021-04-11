@@ -191,5 +191,49 @@ public class OrgFacade {
             em.close();
         }
     }
+     
+      public String testData() {
+         EntityManager em = getEntityManager();
+         try {
+             em.getTransaction().begin();
+             Employee emp1 = new Employee("Emil", "Danielsen", "Emil1998@gmail.com");
+             Employee emp2 = new Employee("Freja", "Egedal", "Fjaeg@hotmail.com");
+             Employee emp3 = new Employee("Sofie", "Otisdir", "Sofie_otis@hotmail.dk");
+             Employee emp4 = new Employee("Bjørn", "Aden", "Bade@outlook.dk");
+             
+             Department dep1 = new Department("1", "Sales", "Håndtering af alt salg");
+             Department dep2 = new Department("2", "Customer Service", "Håndtering af al kundesupport");
+             Department dep3 = new Department("3", "IT", "Håndtering af IT");
+             
+             Project proj1 = new Project("test", 10);
+             Project proj2 = new Project("test2", 20);
+             Project proj3 = new Project("test3", 30);
+             
+             
+             proj1.addEmployee(emp1);
+             proj1.addEmployee(emp2);
+             proj2.addEmployee(emp3);
+             proj3.addEmployee(emp4);
+             
+             em.persist(proj1);
+             em.persist(proj2);
+             em.persist(proj3);
+             
+             em.persist(dep1);
+             em.persist(dep2);
+             em.persist(dep3);
+             
+             em.persist(emp1);
+             em.persist(emp2);
+             em.persist(emp3);
+             em.persist(emp3);
+             
+             em.getTransaction().commit();
+         } finally {
+             em.close();
+         }
+         
+         return "Test data indsat";
+     }
 
 }

@@ -52,6 +52,14 @@ public class OrgResource {
     @Context
     UriInfo uriInfo;
 
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String demo() {
+        EMPFACADE.testData();
+        return "{\"msg\":\"Der er hul igennem\"}";
+    }
+    
     @GET
     @Path("empl")
     @Produces(MediaType.APPLICATION_JSON)
